@@ -1,5 +1,6 @@
 import { useEffect, useRef } from "react"
 import { Hammer } from "./classes/Hammer";
+import pako from "pako";
 
 function App() {
 
@@ -57,17 +58,20 @@ function App() {
                 };
                 try {
                     let reader = new FileReader();
-                    reader.readAsText(files[0], "UTF-8");
+                    reader.readAsArrayBuffer(files[0]);
                     reader.onload = (evt) => {
                         if (evt.target) {
-                            const data = JSON.parse(evt.target.result as string);
+                            // @ts-expect-error
+                            const uncompressed_data = pako.inflate(evt.target.result, {to: "string"});
+                            console.log(uncompressed_data)
+                            const data = JSON.parse(uncompressed_data as string);
                             if (hammerRef.current) {
                                 const tl = new Image();
                                 tl.src = data.tilesheet;
                                 tl.onload = () => {
                                     if (hammerRef.current) {
                                         hammerRef.current.setTileSheet(tl);
-                                        hammerRef.current.tileMap = data.map;
+                                        hammerRef.current.heditor.tileMap = data.map;
                                     }
                                 };
 

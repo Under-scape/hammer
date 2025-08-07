@@ -7,7 +7,7 @@ import { EventsManager } from "./EventManager";
 import { HammerConsole } from "./HammerConsole";
 import { HammerLoader } from "./HammerLoader";
 import { Tile } from "./Tile";
-
+import pako from "pako";
 
 export class Hammer {
     canvas: HTMLCanvasElement | null = null;
@@ -72,7 +72,8 @@ export class Hammer {
         if (this.tilesheet == null) return this.hconsole.push("Tilesheet not exist !", "ERROR");
         const tilesheet_string = ImageToString(this.tilesheet);
         if (tilesheet_string)
-            DownloadTextFile(JSON.stringify({ tilesheet: tilesheet_string, map: this.heditor.tileMap }), "my_map.tmpx");
+            // @ts-expect-error
+            DownloadTextFile(pako.deflate(JSON.stringify({ tilesheet: tilesheet_string, map: this.heditor.tileMap })), "my_map.tmpx");
         else
             return this.hconsole.push("An error has occurred !", "ERROR");
     }
@@ -120,8 +121,6 @@ export class Hammer {
     }
 
     async setTileSheet(img: HTMLImageElement) {
-        // ? Save le tilesheet
-        this.tilesheet = img;
 
         // ? desactiver le bouton pour add des ts
         if (this.helements.elements.button_set_tilesheet)
@@ -131,6 +130,9 @@ export class Hammer {
 
         // ? Reset l'ancien ts
         this.resetTiles();
+
+        // ? Save le tilesheet
+        this.tilesheet = img;
 
         // ? Recup le nombre
         const tilesMax = Math.floor(img.width / 16) * Math.floor(img.height / 16);
