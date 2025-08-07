@@ -1,4 +1,4 @@
-# 🔨 Hammer - 2D Map Editor
+# 🔨 Hammer - 2D Map Editor (Project currently under development.)
 
 **Hammer** is a lightweight and intuitive tilemap editor, specially designed to create 2D maps for our upcoming game directly in your browser.
 
