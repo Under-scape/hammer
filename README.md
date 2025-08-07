@@ -1,69 +1,74 @@
-# React + TypeScript + Vite
+# Hammer
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Hammer is a web-based, lightweight tilemap editor built with React, TypeScript, and Vite. It provides a simple interface for creating 2D game maps by placing tiles from a custom tilesheet onto a zoomable and pannable canvas.
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- **Custom Tilesheets**: Upload your own PNG, JPG, or JPEG image files to be used as a tilesheet.
+- **Tile Palette**: Automatically slices the uploaded tilesheet into a selectable palette of 16x16 tiles.
+- **Infinite Canvas**: Pan and zoom freely to navigate your map.
+- **Core Editing Tools**: Draw and erase tiles with simple mouse clicks.
+- **Save & Load**: Export your maps to a `.tmpx` JSON file, which includes the tilesheet data, and import them back into the editor.
+- **Keyboard Shortcuts**: Speed up your workflow with intuitive shortcuts for common actions.
+- **Real-time Console**: Get feedback on your actions through the built-in console log.
 
-## Expanding the ESLint configuration
+## Getting Started
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+To run the editor on your local machine, follow these steps:
 
-```js
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+1.  **Clone the repository:**
+    ```bash
+    git clone https://github.com/under-scape/hammer.git
+    cd hammer
+    ```
 
-      // Remove tseslint.configs.recommended and replace with this
-      ...tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      ...tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      ...tseslint.configs.stylisticTypeChecked,
+2.  **Install dependencies:**
+    ```bash
+    npm install
+    ```
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+3.  **Run the development server:**
+    ```bash
+    npm run dev
+    ```
+
+4.  Open the provided URL (e.g., `http://localhost:5173`) in your browser.
+
+## How to Use
+
+-   **Loading a Tilesheet**: Click the **Upload Tilesheet** button or press `U` to select your image file. The editor will process the image and display the individual tiles in the left-hand panel.
+-   **Selecting a Tile**: Click on any tile in the left-hand tile panel to select it for drawing.
+-   **Placing Tiles**: Select the **Draw** tool (or press `D`) and click on the canvas to place the selected tile.
+-   **Erasing Tiles**: Select the **Erase** tool (or press `E`) and click on a tile on the canvas to remove it.
+-   **Navigating the Canvas**:
+    -   **Pan**: Hold the right mouse button and drag to move around the canvas.
+    -   **Zoom**: Use the mouse wheel to zoom in and out.
+    -   **Center View**: Click the **Center view** button or press `C` to re-center the canvas.
+-   **Saving and Loading**:
+    -   **Save**: Click the **Save local copy** button or press `Ctrl + S` to download the current map as a `.tmpx` file.
+    -   **Load**: Click the **Import Map** button to load a previously saved `.tmpx` file. This will restore the tilesheet and the map layout.
+
+## File Format (.tmpx)
+
+The `.tmpx` file is a JSON object containing the map data. It has two main properties:
+
+-   `tilesheet`: A base64 data URL representation of the tilesheet image.
+-   `map`: An array of tile objects, where each object has:
+    -   `x`: The x-coordinate of the tile on the map.
+    -   `y`: The y-coordinate of the tile on the map.
+    -   `tile`: The index of the tile from the tilesheet palette.
+
+```json
+{
+  "tilesheet": "data:image/png;base64,...",
+  "map": [
+    { "tile": 0, "x": 0, "y": 0 },
+    { "tile": 5, "x": 16, "y": 0 },
+    { "tile": 12, "x": 0, "y": 16 }
+  ]
+}
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## License
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
