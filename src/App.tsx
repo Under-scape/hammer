@@ -95,53 +95,53 @@ function App() {
             <div className="div-hammer-container">
                 <div className="tools">
 
-                    <button onClick={() => inputFileMap.current?.click()} ref={button_import_map}><img src="/src/assets/images/import.png" alt="import" />
+                    <button onClick={() => inputFileMap.current?.click()} ref={button_import_map}><img src="/assets/images/import.png" alt="import" />
                         <span>Import Map (I)</span>
                         <input type="file" id="inputFileMap" ref={inputFileMap} onChange={handleLoadMap} className="nodisplay" accept=".tmpx" />
                     </button>
 
                     <button onClick={() => { hammerRef.current && hammerRef.current.mapToJson() }}>
-                        <img src="/src/assets/images/save.png" alt="save" />
+                        <img src="/assets/images/save.png" alt="save" />
                         <span>Save local copy (ctrl + s)</span>
                     </button>
 
                     <hr />
 
                     <button onClick={() => inputFileTilesheet.current?.click()} ref={button_set_tilesheet}>
-                        <img src="/src/assets/images/palet.png" alt="palet" />
+                        <img src="/assets/images/palet.png" alt="palet" />
                         <span>Upload Tilesheet (U)</span>
                         <input type="file" id="inputFileTS" ref={inputFileTilesheet} onChange={handleLoadTilesheet} className="nodisplay"  accept="image/png, image/jpg, image/jpeg" />
                     </button>
 
-                    <button onClick={() => { if (hammerRef.current) { hammerRef.current.tool = "draw"; } }}>
-                        <img src="/src/assets/images/pen.png" alt="pen" />
+                    <button onClick={() => { if (hammerRef.current) { hammerRef.current.heditor.tool = "draw"; } }}>
+                        <img src="/assets/images/pen.png" alt="pen" />
                         <span>Draw (D)</span>
                     </button>
 
-                    <button onClick={() => { if (hammerRef.current) { hammerRef.current.tool = "eraser"; } }}>
-                        <img src="/src/assets/images/erase.png" alt="erase" />
+                    <button onClick={() => { if (hammerRef.current) { hammerRef.current.heditor.tool = "eraser"; } }}>
+                        <img src="/assets/images/erase.png" alt="erase" />
                         <span>Erase (E)</span>
                     </button>
 
                     <button>
-                        <img src="/src/assets/images/bucket.png" alt="bucket" />
+                        <img src="/assets/images/bucket.png" alt="bucket" />
                         <span>Bucket (B)</span>
                     </button>
 
                     <button>
-                        <img src="/src/assets/images/rect.png" alt="rect" />
+                        <img src="/assets/images/rect.png" alt="rect" />
                         <span>Rectangle (R)</span>
                     </button>
 
                     <button>
-                        <img src="/src/assets/images/measure.png" alt="measure" />
+                        <img src="/assets/images/measure.png" alt="measure" />
                         <span>Measure (M)</span>
                     </button>
 
                     <hr />
 
                     <button>
-                        <img src="/src/assets/images/center.png" alt="center" onClick={() => hammerRef.current && hammerRef.current.centerView()} />
+                        <img src="/assets/images/center.png" alt="center" onClick={() => hammerRef.current && hammerRef.current.hcanvas.centerView()} />
                         <span>Center view (C)</span>
                     </button>
 

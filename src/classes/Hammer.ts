@@ -60,7 +60,7 @@ export class Hammer {
 
         // ? Load de la tile empty
         const imgemp = new Image();
-        imgemp.src = "/src/assets/images/missing_texture.png";
+        imgemp.src = "/assets/images/missing_texture.png";
 
         imgemp.onload = async () => {
             this.emptyTile = new Tile(0, 0, imgemp);

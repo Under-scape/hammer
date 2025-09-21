@@ -192,7 +192,7 @@ canvas {
     position: relative;
     image-rendering: pixelated;
     flex: 1 0 0;
-    background: url(/src/assets/images/bg.png);
+    background: url(    /assets/images/bg.png);
     background-size: 16px;
     background-repeat: repeat;
     box-sizing: border-box;
