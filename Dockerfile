@@ -19,4 +19,4 @@ COPY --from=builder /app/dist ./dist
 
 EXPOSE 5000
 
-CMD ["serve", "-s", "build", "-l", "5000"]
+CMD ["serve", "-s", "dist", "-l", "5000"]
