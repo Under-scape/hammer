@@ -78,8 +78,6 @@ export class Hammer {
             return this.hconsole.push("An error has occurred !", "ERROR");
     }
 
-
-
     resetTiles() {
         if (this.helements.elements.div_view_tiles)
             this.helements.elements.div_view_tiles.innerHTML = "";
